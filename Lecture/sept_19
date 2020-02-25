@@ -1,0 +1,36 @@
+	.data
+	
+	
+	.text
+	
+####
+# main()
+###
+	li	$t9, 3
+	li	$t0, 5
+	jal exp
+	
+	li	$v0,10
+	syscall
+	
+	
+####
+# exp()
+#	$a0 ---> result
+#	$t0 ---> p
+#	$t9 ---> x
+####
+exp:	
+	li 	$a0, 1
+loop:	beq	$t0, $0, done
+	andi	$t8, $t0, 1
+	bne	$t8, $0, else
+	mul	$a0, $a0, $t9 
+	  
+else:	mul	$t9, $t9, $t9
+	sra	$t0, $t0, 1
+	b	loop
+	
+done:	jr	$ra		  	    	    	  	    	    
+	
+
